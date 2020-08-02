@@ -9,6 +9,7 @@ app = FastAPI()
 
 # 1.GET-запрос, которые возвращает текущий день недели на сервере
 
+
 @app.get('/')
 def current_day():
     day = weekdays[datetime.datetime.today().isoweekday()]
