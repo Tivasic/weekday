@@ -31,18 +31,18 @@ def current_weekday(item: Data):
 
 @app.post('/future_date')
 def future_date(numberdays, numberhrs):
-    a = datetime.datetime.today().now()
+
+    Calc.futuredate = datetime.datetime.today().now()
     numberdays = int(numberdays)
     numberhrs = int(numberhrs)
 
     if numberdays >= 0:
         n = datetime.timedelta(days=numberdays)
-        a = a + n
+        Calc.futuredate = Calc.futuredate + n
 
     if numberhrs >= 0:
         m = datetime.timedelta(hours=numberhrs)
-        a = a + m
+        Calc.futuredate = Calc.futuredate + m
 
-    Calc.futuredate = a
     Calc.futuredate = weekdays[Calc.futuredate.isoweekday()]
     return Calc.futuredate
