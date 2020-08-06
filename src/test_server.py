@@ -1,19 +1,23 @@
 import server
+import datetime
+
+import pytest
 
 from schemas import Data
+from dictionary import weekdays
 
 
-def test_current_day():
-    assert server.current_day() == "Wednesday"
+class Test_weekday:
+
+    def test_current_day(self):
+        assert server.current_day() == weekdays[datetime.datetime.today().isoweekday()]
+
+    def test_current_weekday(self):
+        assert server.current_weekday(self) == weekdays[datetime.datetime.today().isoweekday()]
+
+    def test_future_date(self):
+        assert server.future_date(1, 10) == Data.futuredate
 
 
-def test_current_weekday():
-    assert server.current_weekday(Data) == "Wednesday"
-
-
-def test_future_date():
-    assert server.future_date(0, 0) == "Wednesday"
-
-
-
-
+if __name__ == "__main__":
+    pytest.main()

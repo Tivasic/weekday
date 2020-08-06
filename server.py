@@ -2,9 +2,8 @@ import datetime
 
 from fastapi import FastAPI
 
-from schemas import Calc, Data
+from schemas import Data
 from dictionary import weekdays
-
 
 app = FastAPI()
 
@@ -36,17 +35,17 @@ def current_weekday(item: Data):
 def future_date(numberdays, numberhrs):
     # Отправляет на сервер указанные дни и часы
     # и возвращает день недели через указанное время.
-    Calc.futuredate = datetime.datetime.today().now()
+    Data.futuredate = datetime.datetime.today().now()
     numberdays = int(numberdays)
     numberhrs = int(numberhrs)
 
     if numberdays >= 0:
         n = datetime.timedelta(days=numberdays)
-        Calc.futuredate = Calc.futuredate + n
+        Data.futuredate = Data.futuredate + n
 
     if numberhrs >= 0:
         m = datetime.timedelta(hours=numberhrs)
-        Calc.futuredate = Calc.futuredate + m
+        Data.futuredate = Data.futuredate + m
 
-    Calc.futuredate = weekdays[Calc.futuredate.isoweekday()]
-    return Calc.futuredate
+    Data.futuredate = weekdays[Data.futuredate.isoweekday()]
+    return Data.futuredate
